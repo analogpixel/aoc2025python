@@ -8,16 +8,16 @@ moves = [ convert[x[0]] * int(x[1:]) for x in d[1:] ]
 
 
 ## Part 1
-# total = 0
-#
-# for m in moves:
-#     pos = (pos + m) % 100
-#     print(pos)
-#     if pos == 0:
-#         total += 1
-#
-# print("Part 1:", total)
-#
+total = 0
+
+for m in moves:
+    pos = (pos + m) % 100
+    print(pos)
+    if pos == 0:
+        total += 1
+
+print("Part 1:", total)
+
 
 ## Part 2
 total = 0
@@ -25,31 +25,19 @@ pos = start_pos
 
 # 6599 correct answer
 for m in moves:
-    zero_count = abs(m // 100)
-    total += zero_count
-
-    if pos+(m%100) >= 100 or pos + (m%100) < 0:
-        total += 1
-
-    pos = abs(pos + (m%100))  % 100
-
-print(total,pos)
+    for i in range(0, abs(m)):
+        if m < 0:
+            pos -= 1
+        else:
+            pos += 1
 
 
-# for m in moves:
-#     for i in range(0, abs(m)):
-#         if m < 0:
-#             pos -= 1
-#         else:
-#             pos += 1
-#
-#
-#         if pos == 100:
-#             pos = 0
-#         elif pos == -1:
-#             pos = 99
-#
-#         if pos == 0:
-#             total +=1
-#
-# print(total)
+        if pos == 100:
+            pos = 0
+        elif pos == -1:
+            pos = 99
+
+        if pos == 0:
+            total +=1
+
+print(total)
